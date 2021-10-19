@@ -3,6 +3,7 @@ import PFUIReactComponent from "../../system/pfui-common-things";
 import Button from "../../bootstrap/Button";
 import Input from "../../bootstrap/Input";
 import Label from "../../bootstrap/Label";
+import TextField from "../../bootstrap/TextField";
 
 
 export default class BootstrapComponent extends PFUIReactComponent<any, any> {
@@ -16,6 +17,16 @@ export default class BootstrapComponent extends PFUIReactComponent<any, any> {
                 <br/>
                 <Label>Time</Label>
                 <Input readOnly={true} type={"time"}/>
+                <br/> <br/>
+                <TextField
+                    type={"text"}
+                    label={"First Name"}
+                    name={"firstName"}
+                    error={false}
+                    wasValidated={true}
+                    errorText={"Please Enter Name"}
+                    helperText={"Please Enter valid name"}
+                />
             </Bootstrap>
         );
     }
