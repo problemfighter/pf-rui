@@ -1,4 +1,6 @@
 import {Component} from 'react';
 
 
-export default class PFUIReactComponent<P, S> extends Component<P, S> {}
+export interface PFUIState { }
+
+export default class PFUIReactComponent<P, S extends PFUIState> extends Component<P, S> {}
