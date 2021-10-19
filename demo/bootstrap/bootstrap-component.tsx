@@ -12,10 +12,10 @@ export default class BootstrapComponent extends PFUIReactComponent<any, any> {
         return (
             <Bootstrap>
                 <h1>Bootstrap Bismillah</h1>
-                <Button >Button Example</Button>
+                <Button disabled={true} >Button Example</Button>
                 <br/>
                 <Label>Time</Label>
-                <Input type={"time"}/>
+                <Input readOnly={true} type={"time"}/>
             </Bootstrap>
         );
     }

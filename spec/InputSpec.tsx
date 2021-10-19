@@ -24,6 +24,7 @@ export type InputType =
 export interface InputProps extends React.HTMLAttributes<HTMLInputElement> {
     type?: InputType
     viewSize?: Size
+    readOnly?: boolean
 }
 
 
