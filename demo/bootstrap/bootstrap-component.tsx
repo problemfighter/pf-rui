@@ -1,5 +1,5 @@
-import PFUIReactComponent from "../../system/pfui-react-component";
 import Bootstrap from "../../bootstrap/Bootstrap";
+import PFUIReactComponent from "../../system/pfui-common-things";
 
 
 export default class BootstrapComponent extends PFUIReactComponent<any, any> {
