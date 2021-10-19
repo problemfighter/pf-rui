@@ -1,5 +1,6 @@
 import React from "react";
 import PFUIReactComponent from "../system/pfui-common-things";
+import {Size} from "./common/common-type";
 
 export type InputType =
     'text'
@@ -22,6 +23,7 @@ export type InputType =
 
 export interface InputProps extends React.HTMLAttributes<HTMLInputElement> {
     type?: InputType
+    viewSize?: Size
 }
 
 
