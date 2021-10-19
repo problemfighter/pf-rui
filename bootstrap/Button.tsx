@@ -5,8 +5,7 @@ interface Props extends ButtonProps {
     outline?: boolean
 }
 
-class State implements PFUIState {
-}
+class State implements PFUIState {}
 
 export default class Button extends ButtonSpec<Props, State> {
 
