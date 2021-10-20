@@ -39,9 +39,13 @@ export default class TextField extends TextFieldSpec<Props, State> {
     }
 
     private getLabel() {
+        let requiredIndicator: any = ""
+        if (this.props.required) {
+            requiredIndicator = <span className="text-danger pe-1 fw-bolder">*</span>
+        }
         if (this.props.label) {
             let type = this.props.type as LabelType
-            return (<Label type={type}>{this.props.label}</Label>)
+            return (<Label type={type}>{requiredIndicator}{this.props.label}</Label>)
         }
         return ""
     }

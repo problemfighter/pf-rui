@@ -1,7 +1,7 @@
 import React from "react";
 import PFUIReactComponent from "../system/pfui-common-things";
 import {Size} from "./common/common-type";
-import {CommonAttributes} from "./common/common-event";
+import {CommonAttributes} from "./common/common-attrs";
 
 export type InputType =
     'text'

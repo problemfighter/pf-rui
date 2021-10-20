@@ -1,7 +1,7 @@
 import React from "react";
 import PFUIReactComponent from "../system/pfui-common-things";
 import {InputCommonProps} from "./InputSpec";
-import {CommonEvent} from "./common/common-event";
+import {CommonEvent} from "./common/common-attrs";
 
 export interface TextFieldProps extends InputCommonProps, CommonEvent {
     label?: React.ReactNode;

@@ -10,4 +10,20 @@ export default class CommonUtil {
         }
         return propsCopy
     }
+
+    public static addId(props: any) {
+        let id = {}
+        if (props.id) {
+            id = {id: props.id}
+        }
+        return id
+    }
+
+    public static addClassName(props: any, className = "") {
+        if (props.className) {
+            className += " " + props.className
+            className = className.trim()
+        }
+        return className
+    }
 }
