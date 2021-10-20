@@ -4,6 +4,7 @@ import Button from "../../bootstrap/Button";
 import Input from "../../bootstrap/Input";
 import Label from "../../bootstrap/Label";
 import FormComponent from "./form-component";
+import TableComponent from "./table-component";
 
 
 export default class BootstrapComponent extends PFUIReactComponent<any, any> {
@@ -18,6 +19,7 @@ export default class BootstrapComponent extends PFUIReactComponent<any, any> {
                 <Label>Time</Label>
                 <Input readOnly={true} type={"time"}/>
                 <br/> <br/>
+                <TableComponent/>
                 <FormComponent/>
             </Bootstrap>
         );
