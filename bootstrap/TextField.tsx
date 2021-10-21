@@ -124,6 +124,10 @@ export default class TextField extends TextFieldSpec<Props, State> {
         return klass
     }
 
+    private setBeforeAfter() {
+
+    }
+
     private getInput() {
         let label = this.getLabel()
         let input = this.setInputAttributes(this.getInputClass())

@@ -11,6 +11,8 @@ export interface TextFieldProps extends InputCommonProps, CommonEvent {
     errorText?: React.ReactNode
     successText?: React.ReactNode
     defaultValue?: any
+    beforeInput?: any
+    afterInput?: any
 }
 
 
