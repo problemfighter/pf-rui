@@ -10,17 +10,21 @@ interface Props extends TextFieldProps {
     wrapperClass?: string
     addWrapperClass?: string
     type?: InputType
+    inputGroupClass?: string
 }
 
 class State implements PFUIState {
+    isShowPassword: boolean = false
 }
 
 export default class TextField extends TextFieldSpec<Props, State> {
 
     static defaultProps = {
-        wrapperClass: "mb-3"
+        wrapperClass: "mb-3",
+        inputGroupClass: "input-group"
     }
 
+    state: State = new State()
 
     private getWrapperClass() {
         let wrapperClass = (this.props.wrapperClass ? this.props.wrapperClass : "")
@@ -74,8 +78,21 @@ export default class TextField extends TextFieldSpec<Props, State> {
         return response
     }
 
+    private showHidePassword() {
+        this.setState(prevState => ({isShowPassword: !prevState.isShowPassword}))
+    }
+
     private getPasswordInput(input: any) {
-        return input
+        const _props = this.props;
+        let _input = this.setInputAttributes(this.getInputClass("password-modify-input"), _props.defaultValue, _props.type, _props.onChange)
+        let beforeInput = (
+            <div className="input-group-text password-input-group-text">
+                <button className="border-none bg-white password-icon-button" onClick={()=>{this.showHidePassword()}}>
+                    {this.state.isShowPassword ? (<i className="bi bi-eye"></i>) : (<i className="bi bi-eye-slash"></i>)}
+                </button>
+            </div>
+        )
+        return this.setBeforeAfter("", _input, beforeInput)
     }
 
     private wrapContent(firstContent: any, secondContent: any) {
@@ -87,11 +104,11 @@ export default class TextField extends TextFieldSpec<Props, State> {
         )
     }
 
-    private setInputAttributes(className: any = "") {
+    private setInputAttributes(className: any = "", defaultValue: any, inputType?: InputType, onChange?: any) {
         const _props = this.props;
         return <Input
-            defaultValue={_props.defaultValue}
-            type={_props.type}
+            defaultValue={defaultValue}
+            type={this.state.isShowPassword && inputType === "password" ? "text" : inputType}
             viewSize={_props.viewSize}
             readOnly={_props.readOnly}
             disabled={_props.disabled}
@@ -104,15 +121,14 @@ export default class TextField extends TextFieldSpec<Props, State> {
             id={_props.id}
             className={className}
             onBlur={_props.onBlur}
-            onChange={_props.onChange}
+            onChange={onChange}
             onFocus={_props.onFocus}
             onKeyDown={_props.onKeyDown}
             onKeyUp={_props.onKeyUp}
         />
     }
 
-    private getInputClass() {
-        let klass = ""
+    private getInputClass(klass = "") {
         if (this.props.className) {
             klass += this.props.className
         }
@@ -124,13 +140,21 @@ export default class TextField extends TextFieldSpec<Props, State> {
         return klass
     }
 
-    private setBeforeAfter() {
-
+    private setBeforeAfter(input: any, before: any, after: any) {
+        const _props = this.props;
+        return (
+            <div className={_props.inputGroupClass}>
+                {before}
+                {input}
+                {after}
+            </div>
+        )
     }
 
     private getInput() {
+        const _props = this.props;
         let label = this.getLabel()
-        let input = this.setInputAttributes(this.getInputClass())
+        let input = this.setInputAttributes(this.getInputClass(), _props.defaultValue, _props.type, _props.onChange)
         let type = String(this.props.type)
         switch (type) {
             case "checkbox":

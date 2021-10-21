@@ -40,6 +40,14 @@ export default class FormComponent extends PFUIReactComponent<any, any> {
                                         name={"lastName"}
                                     />
                                 </Column>
+                                <Column span={6}>
+                                    <TextField
+
+                                        label={"Password"}
+                                        name={"password"}
+                                        type={"password"}
+                                    />
+                                </Column>
                                 <Column>
                                     <TextField type={"checkbox"} label={"Yes or not"}/>
                                 </Column>
