@@ -87,7 +87,7 @@ export default class TextField extends TextFieldSpec<Props, State> {
         let _input = this.setInputAttributes(this.getInputClass("password-modify-input"), _props.defaultValue, _props.type, _props.onChange)
         let beforeInput = (
             <div className="input-group-text password-input-group-text">
-                <button className="border-none bg-white password-icon-button" onClick={()=>{this.showHidePassword()}}>
+                <button type="button" className="border-none bg-white password-icon-button" onClick={()=>{this.showHidePassword()}}>
                     {this.state.isShowPassword ? (<i className="bi bi-eye"></i>) : (<i className="bi bi-eye-slash"></i>)}
                 </button>
             </div>
