@@ -35,4 +35,8 @@ export default class CommonTask {
         return klass
     }
 
+    public static concatClass(klass: string, newKlass: string) {
+        return klass.trim() + " " + newKlass
+    }
+
 }
