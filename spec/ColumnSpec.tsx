@@ -6,7 +6,11 @@ import {VariousSize} from "./common/common-type";
 export interface ColumnProps extends React.HTMLAttributes<HTMLDivElement>, CommonAttributes {
     children?: any
     span?: number
-    type?: VariousSize
+    spanSmall?: number
+    spanMedium?: number
+    spanLarge?: number
+    spanExtraLarge?: number
+    spanTooExtraLarge?: number
 }
 
 
