@@ -19,7 +19,6 @@ export default class Column extends ColumnSpec<Props, State> {
         const _props = this.props;
         if (_props.span) {
             klass += CommonTask.concatClass(klass, "col-" + _props.span)
-            klass += "-" + this.props.span
         }
 
         if (_props.spanSmall) {
