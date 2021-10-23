@@ -1,0 +1,37 @@
+.toast-container {
+    position: fixed;
+    z-index: 1055;
+}
+
+.top-right {
+    top: 0;
+    right: 0;
+}
+
+.top-left {
+    top: 0;
+    left: 0;
+}
+
+.top-center {
+    transform: translateX(-50%);
+    top: 0;
+    left: 50%;
+}
+
+.bottom-right {
+    right: 0;
+    bottom: 0;
+}
+
+.bottom-left {
+    left: 0;
+    bottom: 0;
+}
+
+.bottom-center {
+    transform: translateX(-50%);
+    bottom: 0;
+    left: 50%;
+}
+
