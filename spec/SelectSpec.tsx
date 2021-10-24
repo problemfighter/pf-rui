@@ -5,6 +5,8 @@ import {FieldCommonProps, FieldWrappingProps} from "./InputSpec";
 
 export interface SelectProps extends FieldWrappingProps, CommonAttributes, FieldCommonProps {
     isMulti?: boolean
+    isClearable?: boolean
+    isSearchable?: boolean
     options: Array<any>;
     optionLabel: string;
     optionValue: string;

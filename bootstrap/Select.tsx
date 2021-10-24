@@ -14,12 +14,18 @@ class State implements PFUIState {
     options: any = [];
 }
 
+interface OptionType {
+    label: string;
+    value: string;
+}
+
 export default class Select extends SelectSpec<Props, State> {
 
     state: State = new State();
 
     static defaultProps = {
         wrapperClass: "mb-3",
+        isSearchable: true
     }
 
     componentDidMount() {
@@ -45,6 +51,29 @@ export default class Select extends SelectSpec<Props, State> {
 
     listToOptionType(props: Props) {
         let optionData: { [key: string]: any } = {};
+        optionData.options = [];
+        optionData.selected = null;
+
+        if (props.options && props.optionValue && props.optionLabel) {
+            let items: Array<OptionType> = [];
+            if (props.value instanceof Array) {
+                optionData.selected = []
+            }
+            props.options.map(item => {
+                    items.push({value: item[props.optionValue], label: item[props.optionLabel]})
+                    if (props.value && props.value === item[props.optionValue]) {
+                        optionData.selected = {value: item[props.optionValue], label: item[props.optionLabel]}
+                    } else if (props.value instanceof Array) {
+                        for (let nestedValue in props.value) {
+                            if (props.value[nestedValue] == item[props.optionValue]) {
+                                optionData.selected.push({value: item[props.optionValue], label: item[props.optionLabel]})
+                            }
+                        }
+                    }
+                }
+            );
+            optionData.options = items;
+        }
         return optionData
     }
 
@@ -52,31 +81,32 @@ export default class Select extends SelectSpec<Props, State> {
         const _this = this;
         const _props = this.props;
         this.setState(status => {
-            return {
-                value: data
-            }
-        }, () => {
-            if (_props.onChange) {
-                let value;
-                if (data instanceof Array) {
-                    value = [];
-                    data.map(item => {
-                        value.push(item.value)
-                    });
-
-                } else {
-                    value = data.value
+                return {
+                    value: data
                 }
-                let changeData = {
-                    raw: data,
-                    target: {
-                        name: _this.props.name,
-                        value: value
+            }, () => {
+                if (_props.onChange) {
+                    let value;
+                    if (data instanceof Array) {
+                        value = [];
+                        data.map(item => {
+                            value.push(item.value)
+                        });
+
+                    } else {
+                        value = data.value
                     }
-                };
-                _props.onChange(changeData);
+                    let changeData = {
+                        raw: data,
+                        target: {
+                            name: _this.props.name,
+                            value: value
+                        }
+                    };
+                    _props.onChange(changeData);
+                }
             }
-        });
+        );
     }
 
 
@@ -108,6 +138,9 @@ export default class Select extends SelectSpec<Props, State> {
                 onChange={(data: any) => {
                     _this.onChange(data)
                 }}
+                isSearchable={_props.isSearchable}
+                isClearable={_props.isClearable}
+                isDisabled={_props.disabled}
                 options={_this.state.options}
                 className={klass}
                 id={_props.id}

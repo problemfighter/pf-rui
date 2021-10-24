@@ -30,6 +30,8 @@ export default class FormComponent extends PFUIReactComponent<any, any> {
                             <Row className={"new-class"} id={"this-is-uniq-id"}>
                                 <Column>
                                     <Select
+                                        isSearchable={false}
+                                        isClearable={true}
                                         options={options}
                                         optionLabel={"label"}
                                         optionValue={"value"}
