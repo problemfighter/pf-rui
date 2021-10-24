@@ -1,15 +1,12 @@
 import {PFUIState} from "../system/pfui-common-things";
 import TextFieldSpec, {TextFieldProps} from "../spec/TextFieldSpec";
 import React from "react";
-import Label, {LabelType} from "./Label";
 import Input from "./Input";
 import {InputType} from "../spec/InputSpec";
+import {InputViewHelper} from "./common/input-view-helper";
 
 
 interface Props extends TextFieldProps {
-    wrapperClass?: string
-    addWrapperClass?: string
-    type?: InputType
     inputGroupClass?: string
 }
 
@@ -27,56 +24,20 @@ export default class TextField extends TextFieldSpec<Props, State> {
     state: State = new State()
 
     private getWrapperClass() {
-        let wrapperClass = (this.props.wrapperClass ? this.props.wrapperClass : "")
-        wrapperClass += " " + (this.props.addWrapperClass ? this.props.addWrapperClass : "")
+        let wrapperClass = ""
         let type = String(this.props.type)
         switch (type) {
             case "checkbox":
             case "radio":
-                wrapperClass += " form-check"
+                wrapperClass = "form-check"
                 break
             case "switch":
-                wrapperClass += " form-check form-switch"
+                wrapperClass = "form-check form-switch"
                 break
         }
-        return wrapperClass
+        return InputViewHelper.getWrapperClass(this.props, wrapperClass)
     }
 
-    private getLabel() {
-        let requiredIndicator: any = ""
-        if (this.props.required) {
-            requiredIndicator = <span className="text-danger pe-1 fw-bolder">*</span>
-        }
-        if (this.props.label) {
-            let type = this.props.type as LabelType
-            return (<Label type={type}>{requiredIndicator}{this.props.label}</Label>)
-        }
-        return ""
-    }
-
-    private getHelperContent() {
-        let response: any = ""
-        if (this.props.helperText) {
-            response = <div className="form-text">{this.props.helperText}</div>
-        }
-        return response
-    }
-
-    private getErrorContent() {
-        let response: any = ""
-        if (this.props.errorText) {
-            response = <div className="invalid-feedback">{this.props.errorText}</div>
-        }
-        return response
-    }
-
-    private getSuccessContent() {
-        let response: any = ""
-        if (this.props.successText) {
-            response = <div className="valid-feedback">{this.props.successText}</div>
-        }
-        return response
-    }
 
     private showHidePassword() {
         this.setState(prevState => ({isShowPassword: !prevState.isShowPassword}))
@@ -132,12 +93,7 @@ export default class TextField extends TextFieldSpec<Props, State> {
         if (this.props.className) {
             klass += this.props.className
         }
-        if (this.props.error) {
-            klass += " is-invalid"
-        } else if (this.props.wasValidated) {
-            klass += " is-valid"
-        }
-        return klass
+        return InputViewHelper.addValidationClass(this.props, klass)
     }
 
     private setBeforeAfter(input: any, before: any, after: any) {
@@ -153,7 +109,7 @@ export default class TextField extends TextFieldSpec<Props, State> {
 
     private getInput() {
         const _props = this.props;
-        let label = this.getLabel()
+        let label = InputViewHelper.getLabel(_props)
         let input = this.setInputAttributes(this.getInputClass(), _props.defaultValue, _props.type, _props.onChange)
         let type = String(this.props.type)
         switch (type) {
@@ -182,12 +138,13 @@ export default class TextField extends TextFieldSpec<Props, State> {
     }
 
     render() {
+        const _props = this.props;
         let content = (
             <React.Fragment>
                 {this.getInput()}
-                {this.getErrorContent()}
-                {this.getSuccessContent()}
-                {this.getHelperContent()}
+                {InputViewHelper.getErrorContent(_props)}
+                {InputViewHelper.getSuccessContent(_props)}
+                {InputViewHelper.getHelperContent(_props)}
             </React.Fragment>
         );
         return this.getWrapper(content);

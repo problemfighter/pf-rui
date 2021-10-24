@@ -8,12 +8,19 @@ import Card from "../../bootstrap/card/Card";
 import CardContent from "../../bootstrap/card/CardContent";
 import CardHeader from "../../bootstrap/card/CardHeader";
 import CardFooter from "../../bootstrap/card/CardFooter";
+import Select from "../../bootstrap/Select";
 
 
 export default class FormComponent extends PFUIReactComponent<any, any> {
 
 
     render() {
+        const options = [
+            {value: 'chocolate', label: 'Chocolate'},
+            {value: 'strawberry', label: 'Strawberry'},
+            {value: 'vanilla', label: 'Vanilla'}
+        ]
+
         return (
             <Bootstrap>
                 <Container type={"default"} className={"some-class"}>
@@ -21,12 +28,25 @@ export default class FormComponent extends PFUIReactComponent<any, any> {
                         <CardHeader>Header Section</CardHeader>
                         <CardContent>
                             <Row className={"new-class"} id={"this-is-uniq-id"}>
+                                <Column>
+                                    <Select
+                                        options={options}
+                                        optionLabel={"label"}
+                                        optionValue={"value"}
+                                        label={"Select Data"}
+                                        required={true}
+                                        errorText={"Please Select Something"}
+                                        error={true}
+                                        id={"id-in-select"}
+                                        helperText={"Please select any of one"}
+                                    />
+                                </Column>
                                 <Column span={6}>
                                     <TextField
                                         type={"text"}
                                         label={"First Name"}
                                         name={"firstName"}
-                                        error={false}
+                                        error={true}
                                         wasValidated={true}
                                         errorText={"Please Enter Name"}
                                         helperText={"Please Enter valid name"}

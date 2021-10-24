@@ -39,4 +39,5 @@ export default class CommonTask {
         return klass.trim() + " " + newKlass
     }
 
+
 }

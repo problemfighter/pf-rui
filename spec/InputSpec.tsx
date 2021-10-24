@@ -23,8 +23,18 @@ export type InputType =
     | 'week'
     | 'switch'
 
-export interface InputCommonProps extends CommonAttributes {
+export interface InputCommonProps extends FieldCommonProps, CommonAttributes {
     type?: InputType
+}
+
+export interface InputProps extends InputCommonProps, React.HTMLAttributes<HTMLInputElement> {}
+
+
+export default class InputSpec<P extends InputProps, S> extends PFUIReactComponent<P, S> {
+
+}
+
+export interface FieldCommonProps {
     viewSize?: Size
     readOnly?: boolean
     disabled?: boolean
@@ -36,9 +46,16 @@ export interface InputCommonProps extends CommonAttributes {
     autoFocus?: boolean
 }
 
-export interface InputProps extends InputCommonProps, React.HTMLAttributes<HTMLInputElement> {}
-
-
-export default class InputSpec<P extends InputProps, S> extends PFUIReactComponent<P, S> {
-
+export interface FieldWrappingProps {
+    label?: React.ReactNode;
+    error?: boolean
+    wasValidated?: boolean
+    helperText?: React.ReactNode
+    errorText?: React.ReactNode
+    successText?: React.ReactNode
+    defaultValue?: any
+    beforeInput?: any
+    afterInput?: any
+    wrapperClass?: string
+    addWrapperClass?: string
 }
