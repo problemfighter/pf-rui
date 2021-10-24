@@ -22,9 +22,12 @@ export type InputType =
     | 'url'
     | 'week'
     | 'switch'
+    | 'textarea'
 
 export interface InputCommonProps extends FieldCommonProps, CommonAttributes {
     type?: InputType
+    rows?: string
+    cols?: string
 }
 
 export interface InputProps extends InputCommonProps, React.HTMLAttributes<HTMLInputElement> {}

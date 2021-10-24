@@ -65,6 +65,8 @@ export default class TextField extends TextFieldSpec<Props, State> {
         )
     }
 
+
+
     private setInputAttributes(className: any = "", defaultValue: any, inputType?: InputType, onChange?: any) {
         const _props = this.props;
         return <Input

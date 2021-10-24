@@ -28,6 +28,10 @@ export default class Select extends SelectSpec<Props, State> {
         isSearchable: true
     }
 
+    constructor(props: Props) {
+        super(props);
+    }
+
     componentDidMount() {
         this.loadOption();
     }
@@ -124,6 +128,35 @@ export default class Select extends SelectSpec<Props, State> {
         )
     }
 
+    private getStyle() {
+        const _props = this.props;
+        return {
+            control: (base: any, state: any) => {
+                let response: any = {...base}
+                if (_props.error) {
+                    response = {
+                        ...base,
+                        border: '1px solid red',
+                        boxShadow: 'none',
+                        '&:hover': {
+                            border: '1px solid red',
+                        }
+                    }
+                } else if (_props.wasValidated) {
+                    response = response = {
+                        ...base,
+                        border: '1px solid #198754',
+                        boxShadow: 'none',
+                        '&:hover': {
+                            border: '1px solid #198754',
+                        }
+                    }
+                }
+                return response
+            },
+        }
+    }
+
     render() {
         const _props = this.props;
         const _this = this;
@@ -133,6 +166,7 @@ export default class Select extends SelectSpec<Props, State> {
 
         let select = (
             <ReactSelect
+                styles={_this.getStyle()}
                 value={_this.state.value}
                 isMulti={_props.isMulti}
                 onChange={(data: any) => {

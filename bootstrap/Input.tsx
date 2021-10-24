@@ -28,13 +28,16 @@ export default class Input extends InputSpec<Props, State> {
     }
 
     render() {
+        let TagName = "input";
         const _props = this.props;
         let type = this.props.type
         if (type === "switch") {
             type = "checkbox"
+        } else if (type === "textarea") {
+            TagName = "textarea"
         }
         let klasses = (this.getMainClass() + CommonTask.getSizeClass(_props.viewSize, " form-control-") + (_props.className ? " " + _props.className : "")).trim();
-        return (<input
+        return (<TagName
             {...CommonUtil.removePropsItem(_props, ['viewSize'])}
             className={klasses}
             type={type}

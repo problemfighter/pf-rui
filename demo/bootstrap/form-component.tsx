@@ -38,7 +38,8 @@ export default class FormComponent extends PFUIReactComponent<any, any> {
                                         label={"Select Data"}
                                         required={true}
                                         errorText={"Please Select Something"}
-                                        error={true}
+                                        error={false}
+                                        wasValidated={true}
                                         id={"id-in-select"}
                                         helperText={"Please select any of one"}
                                     />
@@ -48,7 +49,7 @@ export default class FormComponent extends PFUIReactComponent<any, any> {
                                         type={"text"}
                                         label={"First Name"}
                                         name={"firstName"}
-                                        error={true}
+                                        error={false}
                                         wasValidated={true}
                                         errorText={"Please Enter Name"}
                                         helperText={"Please Enter valid name"}
@@ -72,6 +73,9 @@ export default class FormComponent extends PFUIReactComponent<any, any> {
                                 </Column>
                                 <Column>
                                     <TextField type={"checkbox"} label={"Yes or not"}/>
+                                </Column>
+                                <Column span={12}>
+                                    <TextField type={"textarea"} label={"Description"} required={true}/>
                                 </Column>
                             </Row>
                         </CardContent>
