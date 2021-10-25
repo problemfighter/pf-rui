@@ -136,10 +136,10 @@ export default class Select extends SelectSpec<Props, State> {
                 if (_props.error) {
                     response = {
                         ...base,
-                        border: '1px solid red',
+                        border: '1px solid #dc3545',
                         boxShadow: 'none',
                         '&:hover': {
-                            border: '1px solid red',
+                            border: '1px solid #dc3545',
                         }
                     }
                 } else if (_props.wasValidated) {
