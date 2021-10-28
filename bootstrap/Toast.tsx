@@ -73,6 +73,9 @@ export default class Toast extends ToastSpec<Props, State> {
         second = (second ? second : 1)
         const _this = this;
         return setTimeout(() => {
+            if (_this.props.onClose) {
+                _this.props.onClose()
+            }
             _this.setState({isShowToast: false})
         }, 1000 * second);
     }

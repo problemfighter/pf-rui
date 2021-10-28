@@ -9,6 +9,7 @@ export interface ToastProps {
     messageType: MessageType
     message: string
     closeTimer?: number
+    onClose?: () => void;
 }
 
 
