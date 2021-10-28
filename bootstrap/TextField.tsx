@@ -53,7 +53,8 @@ export default class TextField extends TextFieldSpec<Props, State> {
                 </button>
             </div>
         )
-        return this.setBeforeAfter("", _input, beforeInput)
+        let extraWrapperClass = InputViewHelper.addValidationClass(this.props, "password-modify-input-wrapper")
+        return this.setBeforeAfter(_input, "", beforeInput, extraWrapperClass)
     }
 
     private wrapContent(firstContent: any, secondContent: any) {
@@ -98,10 +99,11 @@ export default class TextField extends TextFieldSpec<Props, State> {
         return InputViewHelper.addValidationClass(this.props, klass)
     }
 
-    private setBeforeAfter(input: any, before: any, after: any) {
+    private setBeforeAfter(input: any, before: any, after: any, wrapperExtraClass: string = "") {
         const _props = this.props;
+        wrapperExtraClass = InputViewHelper.concatClass(InputViewHelper.getClass(_props.inputGroupClass), wrapperExtraClass)
         return (
-            <div className={_props.inputGroupClass}>
+            <div className={wrapperExtraClass}>
                 {before}
                 {input}
                 {after}
