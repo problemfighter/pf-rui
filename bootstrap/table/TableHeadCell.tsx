@@ -48,7 +48,7 @@ export default class TableHeadCell extends TableHeadCellSpec<Props, State> {
         }
         this.setState({sortDirection: direction})
         if (this.props.onClickSort) {
-            this.props.onClickSort(event, direction)
+            this.props.onClickSort(event, direction, this.props.fieldName)
         }
     }
 
