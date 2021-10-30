@@ -11,6 +11,7 @@ export interface DynamicTableHeadColumn extends CommonAttributes {
 }
 
 export interface DynamicTableHeadProps {
+    currentSortFieldName?: string
     columns: Array<DynamicTableHeadColumn>
     color?: Color
     onClickSort?: (event: any, sortDirection: SortDirection, fieldName?: string) => void;

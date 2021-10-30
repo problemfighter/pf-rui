@@ -7,6 +7,7 @@ export type SortDirection = 'asc' | 'desc'
 export interface TableHeadCellProps extends React.HTMLAttributes<HTMLTableCellElement>, CommonAttributes {
     children?: any
     fieldName?: string
+    currentSortFieldName?: string
     isSortAble?: boolean
     sortDirection?: SortDirection
     onClickSort?: (event: any, sortDirection: SortDirection, fieldName?: string) => void;

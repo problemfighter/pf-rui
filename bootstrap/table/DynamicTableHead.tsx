@@ -36,6 +36,7 @@ export default class DynamicTableHead extends DynamicTableHeadSpec<Props, State>
                     {columns.map(
                         (column: DynamicTableHeadColumn, key: any) => (
                             <TableHeadCell
+                                currentSortFieldName={_props.currentSortFieldName}
                                 key={key}
                                 onClickSort={_props.onClickSort}
                                 id={column.id}

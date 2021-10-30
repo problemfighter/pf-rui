@@ -23,8 +23,12 @@ export default class TableHeadCell extends TableHeadCellSpec<Props, State> {
 
     getSortingOrder() {
         const _this = this
-        let order = ""
+        const {currentSortFieldName, fieldName} = _this.props
+        let order = <i className="bi bi-arrow-down-up me-1"></i>
         if (_this.props.isSortAble) {
+            if (currentSortFieldName && fieldName && fieldName !== currentSortFieldName) {
+                return order
+            }
             switch (_this.state.sortDirection) {
                 case "asc":
                     _this.state.sortDirection = "asc"
@@ -33,10 +37,10 @@ export default class TableHeadCell extends TableHeadCellSpec<Props, State> {
                     _this.state.sortDirection = "desc"
                     return (<i className="bi bi-arrow-up me-1"></i>)
                 default:
-                    return (<i className="bi bi-arrow-down-up me-1"></i>)
+                    return order
             }
         }
-        return order
+        return ""
     }
 
     handleOnClickSort(event: any) {

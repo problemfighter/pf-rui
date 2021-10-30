@@ -12,7 +12,7 @@ class State implements PFUIState {
 export default class TableHead extends TableHeadSpec<Props, State> {
 
     static defaultProps = {
-        color: "default"
+        color: "dark"
     }
 
     private getColorClass() {
