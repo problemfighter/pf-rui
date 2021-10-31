@@ -35,6 +35,15 @@ export default class Pagination extends PaginationSpec<Props, State> {
         this.state.itemPerPage = this.props.itemPerPage
     }
 
+    componentDidUpdate(prevProps: Props) {
+        if (prevProps.itemPerPage !== this.props.itemPerPage || prevProps.currentPage !== this.props.currentPage) {
+            this.setState({
+                currentPage: this.props.currentPage,
+                itemPerPage: this.props.itemPerPage,
+            })
+        }
+    }
+
     private getPaginationMatrix(currentPage: number, totalPage: number) {
         let delta = 2
         let left = currentPage - delta
@@ -143,14 +152,24 @@ export default class Pagination extends PaginationSpec<Props, State> {
     }
 
     private getPaginationView(currentPage: number, totalPage: number, itemPerPage: number) {
-        if (totalPage <= itemPerPage) {
+        if (totalPage <= 1) {
             return ""
         }
         let paginationItems = this.getPaginationMatrix(currentPage, totalPage)
+        const _this = this
         return (
             <React.Fragment>
                 <div className="col-auto">
-                    <Select options={options} optionValue={"value"} optionLabel={"label"} value={this.state.itemPerPage} isSearchable={false}/>
+                    <Select
+                        options={options}
+                        optionValue={"value"}
+                        optionLabel={"label"}
+                        value={this.state.itemPerPage}
+                        isSearchable={false}
+                        onChange={(event: any) => {
+                            _this.onChangeItemPerPage(event, event.target.value)
+                        }}
+                    />
                 </div>
                 <div className="col-auto">
                     <nav>
