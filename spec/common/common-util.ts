@@ -26,4 +26,17 @@ export default class CommonUtil {
         }
         return className
     }
+
+    public static getClass(klass: any, defaultValue: string = "") {
+        return (klass ? klass : defaultValue)
+    }
+
+    public static concatClass(klass: string, newKlass: string) {
+        return klass.trim() + " " + newKlass.trim()
+    }
+
+    public static getAndConcatClass(klass: any, newKlass: string) {
+        let klassString = this.getClass(klass)
+        return this.concatClass(klassString, newKlass)
+    }
 }
