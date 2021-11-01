@@ -11,6 +11,7 @@ export interface DropdownProps {
     wrapperId?: string
     itemClassName?: string
     itemId?: string
+    itemOnClick?: (clickedItem: any, index: any, itemList: any) => any;
 }
 
 

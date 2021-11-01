@@ -8,6 +8,7 @@ export interface DynamicTableHeadColumn extends CommonAttributes {
     displayName?: string
     fieldName?: string
     isSortAble?: boolean
+    isActionColumn?: boolean
 }
 
 export interface DynamicTableHeadProps {

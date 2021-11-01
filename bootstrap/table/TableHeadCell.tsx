@@ -64,6 +64,9 @@ export default class TableHeadCell extends TableHeadCellSpec<Props, State> {
                 this.handleOnClickSort(event)
             }
         }
+        if (this.props.style) {
+            attributes.style = this.props.style
+        }
         return attributes
     }
 

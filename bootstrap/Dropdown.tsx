@@ -17,15 +17,22 @@ export default class Dropdown extends DropdownSpec<Props, State> {
         itemTagName: "li",
     }
 
+    private onClickItem(item: any, key: any) {
+        if (this.props.itemOnClick) {
+            this.props.itemOnClick(item, key, this.props.itemList)
+        }
+    }
+
     private getItemView(item: any, key: any, itemTagName: any, itemLoopCallBack: any) {
+        let itemView = item
         if (itemLoopCallBack) {
-            return itemLoopCallBack(item, key)
+            itemView = itemLoopCallBack(item, key)
         }
         let ItemTagName: any = itemTagName
         let className = InputViewHelper.concatClass(InputViewHelper.getClass(this.props.itemClassName), "dropdown-item")
         return (
-            <ItemTagName key={key} id={this.props.itemId} className={className}>
-                {item}
+            <ItemTagName onClick={(event: any) => this.onClickItem(item, key)} key={key} id={this.props.itemId} className={className}>
+                {itemView}
             </ItemTagName>
         )
     }
