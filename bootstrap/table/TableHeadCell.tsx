@@ -65,7 +65,7 @@ export default class TableHeadCell extends TableHeadCellSpec<Props, State> {
             }
         }
         if (this.props.style) {
-            attributes.style = this.props.style
+            attributes.style = {...attributes.style, ...this.props.style}
         }
         return attributes
     }
