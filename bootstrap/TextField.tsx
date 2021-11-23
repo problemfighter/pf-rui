@@ -29,10 +29,8 @@ export default class TextField extends TextFieldSpec<Props, State> {
         switch (type) {
             case "checkbox":
             case "radio":
-                wrapperClass = "form-check"
-                break
             case "switch":
-                wrapperClass = "form-check form-switch"
+                wrapperClass = "d-inline-flex align-items-center"
                 break
         }
         return InputViewHelper.getWrapperClass(this.props, wrapperClass)
@@ -111,6 +109,25 @@ export default class TextField extends TextFieldSpec<Props, State> {
         )
     }
 
+    private getToggleInput(input: any) {
+        let klass = ""
+        let type = String(this.props.type)
+        switch (type) {
+            case "checkbox":
+            case "radio":
+                klass = "form-check"
+                break
+            case "switch":
+                klass = "form-check form-switch"
+                break
+        }
+        return (
+            <div className={klass}>
+                {input}
+            </div>
+        )
+    }
+
     private getInput() {
         const _props = this.props;
         let label = InputViewHelper.getLabel(_props)
@@ -120,7 +137,8 @@ export default class TextField extends TextFieldSpec<Props, State> {
             case "checkbox":
             case "radio":
             case "switch":
-                return this.wrapContent(input, label)
+                input = this.wrapContent(input, label)
+                return this.getToggleInput(input)
             case "password":
                 input = this.getPasswordInput(input)
                 return this.wrapContent(label, input)
