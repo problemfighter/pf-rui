@@ -64,7 +64,20 @@ export default class TextField extends TextFieldSpec<Props, State> {
         )
     }
 
-
+    private isToggleInputChecked() {
+        let type = String(this.props.type)
+        switch (type) {
+            case "checkbox":
+            case "radio":
+            case "switch":
+                if (this.props.value) {
+                    return true
+                }
+                break
+            default:
+                return false
+        }
+    }
 
     private setInputAttributes(className: any = "", defaultValue: any, inputType?: InputType, onChange?: any) {
         const _props = this.props;
@@ -87,6 +100,7 @@ export default class TextField extends TextFieldSpec<Props, State> {
             onFocus={_props.onFocus}
             onKeyDown={_props.onKeyDown}
             onKeyUp={_props.onKeyUp}
+            checked={this.isToggleInputChecked()}
         />
     }
 

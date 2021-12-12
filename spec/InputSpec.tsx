@@ -24,7 +24,7 @@ export type InputType =
     | 'switch'
     | 'textarea'
 
-export interface InputCommonProps extends FieldCommonProps, CommonAttributes {
+export interface InputCommonProps extends FieldCommonProps, CommonAttributes, ToggleInputProps {
     type?: InputType
     rows?: string
     cols?: string
@@ -35,6 +35,10 @@ export interface InputProps extends InputCommonProps, React.HTMLAttributes<HTMLI
 
 export default class InputSpec<P extends InputProps, S> extends PFUIReactComponent<P, S> {
 
+}
+
+export interface ToggleInputProps {
+    checked?: boolean
 }
 
 export interface FieldCommonProps {
